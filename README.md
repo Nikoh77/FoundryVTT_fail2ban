@@ -20,10 +20,17 @@ bantime  = 1h\
 #banaction = ssh-iptables[remote-host=\*\*\*user\*\*\*@\*\*\*proxyIP\*\*\*, type=multiport]\
 #banaction = ssh-iptables-ipset[remote-host=\*\*\*user\*\*\*@\*\*\*proxyIP***, type=multiport, blocktype=DROP]\
 ```
-## On the proxy you must:
-1) create a user with name as you want, this user must be part of the users e.g. group (100)
+After created user on below first point you need to enable ssh connection with key (without asking password) from root user on fail2ban PC to proxy PC (ssh user@proxyIP):\
+`sudo su`\
+`ssh-keygen -t rsa`\
+`ssh-copy-id user@proxyIP`\
+Authenticate and you will get a confirmation message that a key has been copied, then try connecting with:\
+`ssh user@proxyIP uname -a`\
+you should get the requested data back\
+
+# On the proxy you must:
+1) create a user with name as you want (in my case fail2ban), this user must be part of a group like users(100)\
 2) give rights to iptables and/or bins like:\
-chgrp users /usr/sbin/iptables (or ipset)\
-chmod u+rxs /usr/sbin/iptables (o ipset)\
+`chgrp users /usr/sbin/iptables` (and/or ipset)\
+`chmod u+rxs /usr/sbin/iptables` (and/or ipset)\
 so user above can call needed commands as root...
-3) enable ssh connection with key (without asking password) from fail2ban PC to proxy PC with user above (ssh user@proxyIP)
