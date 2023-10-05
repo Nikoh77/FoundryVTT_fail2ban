@@ -1,5 +1,5 @@
-# FoundryVTT_fail2ban
-Just the fail2ban filter for Foundry Virtual Tabletop
+# FoundryVTT fail2ban
+Just the fail2ban filter for Foundry Virtual TableTop
 
 ## Prerequisites:
 fail2ban at least version 1.0
